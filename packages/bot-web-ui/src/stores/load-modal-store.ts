@@ -311,6 +311,7 @@ export default class LoadModalStore implements ILoadModalStore {
         //throw xml error
         if (active_tab === 1 && !this.is_load_modal_open) {
             this.recent_workspace = null;
+            this.setLoadedLocalFile(null);
         }
         //to load the bot on first load
         if (this.tab_name !== tabs_title.TAB_LOCAL && this.recent_workspace) {
@@ -319,7 +320,6 @@ export default class LoadModalStore implements ILoadModalStore {
             this.recent_workspace = null;
         }
         if (!this.recent_workspace || !this.recent_workspace.rendered) {
-            //TODO: this was the check check used on the older functionality
             const ref = document.getElementById('load-strategy__blockly-container');
 
             if (!ref) {
@@ -433,7 +433,6 @@ export default class LoadModalStore implements ILoadModalStore {
                 load_options.workspace = Blockly.derivWorkspace;
                 load_options.file_name = file_name;
             }
-
             load(load_options);
         });
         reader.readAsText(file);

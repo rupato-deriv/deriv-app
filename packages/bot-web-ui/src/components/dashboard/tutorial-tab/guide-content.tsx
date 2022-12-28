@@ -10,7 +10,7 @@ type TGuideContent = {
     dialog_options: { [key: string]: string };
     faq_search_value: string;
     is_dialog_open: boolean;
-    setIsTourEnded: (param: boolean) => boolean;
+    setHasTourEnded: (param: boolean) => boolean;
     onOkButtonClick: () => void;
     showVideoDialog: (param: { [key: string]: string }) => void;
     guide_list: [];
@@ -27,28 +27,26 @@ const GuideContent = ({
     guide_list,
     setActiveTab,
     setTourDialogVisibility,
-    setIsTourEnded,
+    setHasTourEnded,
 }: TGuideContent) => {
     const triggerTour = (type: string) => {
         const storage = JSON.parse(localStorage?.dbot_settings);
         if (type === 'OnBoard') {
             if (storage.onboard_tour_token) {
-                const onBoardingToken = storage.onboard_tour_token;
                 removeKeyValue('onboard_tour_token');
                 removeKeyValue('onboard_tour_status');
                 removeKeyValue('bot_builder_status');
             }
-            setIsTourEnded(false);
+            setHasTourEnded(false);
             setTourDialogVisibility(true);
             setActiveTab(0);
         } else {
             if (storage.bot_builder_token) {
-                const builderToken = storage.bot_builder_token;
                 removeKeyValue('bot_builder_token');
                 removeKeyValue('bot_builder_status');
                 removeKeyValue('onboard_tour_status');
             }
-            setIsTourEnded(false);
+            setHasTourEnded(false);
             setTourDialogVisibility(true);
             setActiveTab(1);
         }
@@ -168,5 +166,5 @@ export default connect(({ dashboard, load_modal }: RootStore) => ({
     toggleLoadModal: load_modal.toggleLoadModal,
     setActiveTab: dashboard.setActiveTab,
     setTourDialogVisibility: dashboard.setTourDialogVisibility,
-    setIsTourEnded: dashboard.setIsTourEnded,
+    setHasTourEnded: dashboard.setHasTourEnded,
 }))(GuideContent);

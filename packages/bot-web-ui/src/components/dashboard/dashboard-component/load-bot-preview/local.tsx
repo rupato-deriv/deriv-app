@@ -128,7 +128,7 @@ const LocalComponent = ({
                                         setActiveTab(1);
                                     }}
                                 >
-                                    Opens
+                                    {localize('Open')}
                                 </button>
                             </div>
                         </>
@@ -140,7 +140,7 @@ const LocalComponent = ({
                             is_mobile_full_width
                             className={'dc-dialog__wrapper--preview'}
                             has_close_icon
-                            title={'Preview'}
+                            title={localize('Preview')}
                         >
                             <BotPreview id_ref={el_ref} type={'local'} />
                             <div className='load-strategy__button-group'>
@@ -151,7 +151,7 @@ const LocalComponent = ({
                                         setActiveTab(1);
                                     }}
                                 >
-                                    Open
+                                    {localize('Open')}
                                 </button>
                             </div>
                         </Dialog>

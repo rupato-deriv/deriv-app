@@ -44,7 +44,6 @@ export default class SaveModalStore implements ISaveModalStore {
         if (!this.is_save_modal_open) {
             this.setButtonStatus(button_status.NORMAL);
         }
-
         this.is_save_modal_open = !this.is_save_modal_open;
     };
 

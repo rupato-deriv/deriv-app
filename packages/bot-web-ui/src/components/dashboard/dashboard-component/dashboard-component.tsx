@@ -9,6 +9,7 @@ import Cards from './cards';
 import InfoPanel from './info-panel';
 import Local from './load-bot-preview/local';
 import UserGuide from './user-guide';
+import SaveModal from 'Components/save-modal';
 
 type TDashboard = {
     is_info_panel_visible: boolean;
@@ -136,6 +137,9 @@ const DashboardComponent = ({
                     </div>
                 )}
             </DesktopWrapper>
+            <MobileWrapper>
+                <SaveModal />
+            </MobileWrapper>
         </React.Fragment>
     );
 };

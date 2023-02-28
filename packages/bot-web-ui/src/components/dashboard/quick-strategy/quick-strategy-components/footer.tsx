@@ -3,6 +3,7 @@ import { Button } from '@deriv/components';
 import classNames from 'classnames';
 import { localize } from '@deriv/translations';
 import { TQuickStrategyFooter } from './components.types';
+import { connect } from 'Stores/connect';
 
 const QuickStrategyFooter = ({
     is_onscreen_keyboard_active,
@@ -13,6 +14,9 @@ const QuickStrategyFooter = ({
     submitForm,
     setActiveTab,
     toggleStopBotDialog,
+    is_contract_dialog_open,
+    is_stop_bot_dialog_open,
+    is_running,
 }: TQuickStrategyFooter) => {
     const handleCreateEdit = React.useCallback(() => {
         setFieldValue('button', 'edit');
@@ -22,7 +26,7 @@ const QuickStrategyFooter = ({
 
     const handleRun = React.useCallback(() => {
         setActiveTab(1);
-        if (!is_dialog_open) {
+        if (is_running) {
             toggleStopBotDialog();
         } else {
             setFieldValue('button', 'run');
@@ -41,7 +45,6 @@ const QuickStrategyFooter = ({
                     type='button'
                     id='db-quick-strategy__button-edit'
                     text={localize('Create and edit')}
-                    is_disabled={!is_submit_enabled}
                     secondary
                     large
                     onClick={handleCreateEdit}
@@ -50,7 +53,6 @@ const QuickStrategyFooter = ({
                     type='button'
                     id='db-quick-strategy__button-run'
                     text={localize('Run')}
-                    is_disabled={!is_submit_enabled || is_stop_button_visible}
                     primary
                     large
                     onClick={handleRun}
@@ -60,4 +62,6 @@ const QuickStrategyFooter = ({
     );
 };
 
-export default React.memo(QuickStrategyFooter);
+export default connect(({ run_panel }) => ({
+    is_running: run_panel.is_running,
+}))(QuickStrategyFooter);

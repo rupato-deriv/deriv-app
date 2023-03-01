@@ -45,7 +45,6 @@ const GoogleDrive = ({
                             text={localize('Open')}
                             onClick={() => {
                                 onDriveOpen();
-                                setOpenSettings('import');
                             }}
                             is_loading={is_open_button_loading}
                             has_effect

@@ -130,6 +130,7 @@ const TradeAnimation = ({
                 is_disabled={(is_stop_button_disabled || is_button_disabled) && !is_unavailable_for_payment_agent}
                 className='animation__button'
                 id={is_stop_button_visible ? 'db-animation__stop-button' : 'db-animation__run-button'}
+                data-testid='btn-run-bot'
                 text={is_stop_button_visible ? localize('Stop') : localize('Run')}
                 icon={<Icon icon={is_stop_button_visible ? 'IcPause' : 'IcPlay'} color='active' />}
                 onClick={() => {
